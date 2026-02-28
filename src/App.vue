@@ -64,7 +64,8 @@ const addBook = (bookData) => {
     id: Date.now(),
     ...bookData,
     completed: false,
-    rating: 0
+    rating: 0,
+    liked: false
   }
   books.value.push(newBook)
 }
@@ -108,7 +109,7 @@ const filteredBooks = computed(() => {
     .filter(book => {
       if (currentFilter.value === 'unread') return !book.completed
       if (currentFilter.value === 'read') return book.completed
-      if (currentFilter.value === 'liked') return book.completed
+      if (currentFilter.value === 'liked') return book.liked
       return true
     })
     .filter(book => {
